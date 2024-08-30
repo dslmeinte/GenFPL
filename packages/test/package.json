@@ -1,0 +1,31 @@
+{
+  "name": "genfpl-test",
+  "version": "0.0.0-dev",
+  "description": "tests for GenFPL",
+  "author": "Meinte Boersma (DSL Consultancy)",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dslmeinte/GenFPL.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dslmeinte/GenFPL/issues"
+  },
+  "devDependencies": {
+    "typescript": "5.3.3",
+    "@types/chai": "4.3.19",
+    "@types/mocha": "10.0.7"
+  },
+  "scripts": {
+    "clean": "rm -rf dist/ && rm -rf node_modules/",
+    "build": "tsc",
+    "test": "mocha dist/",
+    "lint": "eslint src"
+  },
+  "dependencies": {
+    "genfpl": "0.0.0-dev",
+    "chai": "5.1.1",
+    "mocha": "10.7.3"
+  }
+}

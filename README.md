@@ -11,16 +11,20 @@ Such an FPL can be embedded in any DSL, provided that the DSL is based on LionWe
 It's (loosely) inspired by (the principles underlying) [KernelF](https://markusvoelter.medium.com/design-evolution-and-use-of-kernelf-b6c76993757d) for JetBrains MPS, while aiming to be portable and as technology-independent as possible.
 
 
+## API (of generator)
+
+* `generate(configuration: GenFPLConfiguration, hostLanguage: Language, generationPath: PathLike)` (CLI)
+
+
 ## Development
 
 **Note**: currently written in TypeScript version 5.3.3 (instead of `latest`) because of ESLint support.
 
 NPM packages (within scope `@genfpl`):
 
-* `config-lang`: the LionWeb specification of the GenFPL configuration language
-* `generator`: the generator that turns a GenFPL configuration into artifacts — _(not yet implemented)_
+* `genfpl`: a package that exposes GenFPL (consisting of a definition of its configuration language, as well as its generator) as CLI tooling
+* `test`: unit tests for (mainly) the generator
 * `app`: a Web app to “click together” a GenFPL configuration — _(not yet implemented)_
-* `test`: unit tests for (mainly) the generator — _(not yet implemented)_
 * `interpret-base`: base artifacts for interpreter implementation — _(not yet implemented)_ — [only if necessary]
 
 Run
@@ -29,4 +33,5 @@ Run
 npm run initialize
 ```
 
-to fully initialize
+to fully initialize.
+

@@ -1,11 +1,12 @@
 {
-  "name": "@genfpl/config-lang",
+  "name": "genfpl",
   "version": "0.0.0-dev",
   "description": "DSL-embeddable functional programming languages",
   "author": "Meinte Boersma (DSL Consultancy)",
   "license": "Apache-2.0",
   "type": "module",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dslmeinte/GenFPL.git"
@@ -20,7 +21,7 @@
     "clean": "rm -rf dist/",
     "build": "tsc",
     "lint": "eslint src",
-    "generate": "node dist/main.js",
+    "generate": "node dist/config-lang/definition.js",
     "pregenerate": "npm run build",
     "prerelease": "npm run generate",
     "prerelease-beta": "npm run generate",
