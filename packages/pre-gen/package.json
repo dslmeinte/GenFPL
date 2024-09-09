@@ -1,12 +1,11 @@
 {
-  "name": "genfpl",
+  "name": "genfpl-pre-gen",
   "version": "0.0.0-dev",
   "description": "DSL-embeddable functional programming languages",
   "author": "Meinte Boersma (DSL Consultancy)",
   "license": "Apache-2.0",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/generate.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dslmeinte/GenFPL.git"
@@ -18,18 +17,17 @@
     "clean": "rm -rf dist/",
     "build": "tsc",
     "lint": "eslint src",
-    "generate": "node dist/generate.js",
+    "generate": "node dist/generate.js && cp src/definition.ts ../genfpl/src/config-lang/",
     "pregenerate": "npm run build",
     "prerelease": "npm run generate",
     "prerelease-beta": "npm run generate",
     "release": "npm publish",
     "release-beta": "npm publish --tag beta"
   },
-  "dependencies": {
-    "@lionweb/core": "0.6.8",
-    "@lionweb/utilities": "0.6.8"
-  },
   "devDependencies": {
+    "@lionweb/core": "0.6.8",
+    "@lionweb/utilities": "0.6.8",
+    "@types/node": "22.5.2",
     "typescript": "5.3.3"
   }
 }

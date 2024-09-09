@@ -15,14 +15,23 @@ It's (loosely) inspired by (the principles underlying) [KernelF](https://markusv
 
 * `generate(configuration: GenFPLConfiguration, hostLanguage: Language, generationPath: PathLike)` (CLI)
 
+### Getting hold of the GenFPL configuration language's M2 serialization
 
-## Development
+```typescript
+import genFPLConfigLangSerialization from "genfpl/dist/config-lang/genfpl-config-lang.definition.json" assert { type: "json" }
+import {deserializeLanguages} from "@lionweb/core"
+const genFPLConfigLang = deserializeLanguages(genFPLConfigLangSerialization)
+```
+
+
+## Organization
 
 **Note**: currently written in TypeScript version 5.3.3 (instead of `latest`) because of ESLint support.
 
 NPM packages (within scope `@genfpl`):
 
 * `genfpl`: a package that exposes GenFPL (consisting of a definition of its configuration language, as well as its generator) as CLI tooling
+* `build`: a package that generates (“builds”) parts of the `genfpl` language
 * `test`: unit tests for (mainly) the generator
 * `app`: a Web app to “click together” a GenFPL configuration — _(not yet implemented)_
 * `interpret-base`: base artifacts for interpreter implementation — _(not yet implemented)_ — [only if necessary]

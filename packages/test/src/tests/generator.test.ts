@@ -1,7 +1,7 @@
 import {assert} from "chai"
-const {deepEqual} = assert
+const {equal} = assert
 
-import {generateFPL} from "genfpl"
+import {generateFPL, GenFPLConfiguration} from "genfpl"
 
 import {testHostLanguages} from "../languages/test-host-languages.js"
 
@@ -9,8 +9,8 @@ import {testHostLanguages} from "../languages/test-host-languages.js"
 describe("generator", () => {
 
     it("seems to work", () => {
-        const result = generateFPL(testHostLanguages, {})
-        deepEqual(result.metamodel, [])
+        const result = generateFPL(testHostLanguages, { settings: { comments: true } } as GenFPLConfiguration)
+        equal(result.metamodel.length, 1)
     })
 
 })

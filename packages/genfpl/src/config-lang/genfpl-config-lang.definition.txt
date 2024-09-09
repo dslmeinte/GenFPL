@@ -1,0 +1,8 @@
+language GenFPL Configuration Language
+    version: 0.0.0
+    entities (↓name):
+
+        concept GenFPLConfiguration
+            features (↓name):
+                comments: String
+
