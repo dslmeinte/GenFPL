@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "@lionweb/core": "0.6.8",
-    "@lionweb/utilities": "0.6.8"
+    "@lionweb/utilities": "0.6.8",
+    "littoral-templates": "0.2.2"
   },
   "devDependencies": {
     "typescript": "5.3.3"

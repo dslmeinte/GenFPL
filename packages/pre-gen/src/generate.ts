@@ -12,5 +12,5 @@ writeJsonAsFile(join(genPath, "genfpl-config-lang.definition.json"), serializeLa
 
 writeFileSync(join(genPath, "genfpl-config-lang.definition.txt"), languageAsText(configLang))
 
-writeFileSync(join(genPath, "config-lang.types.ts"), tsTypesForLanguage(configLang))
+// writeFileSync(join(genPath, "config-lang.types.ts"), tsTypesForLanguage(configLang))
 

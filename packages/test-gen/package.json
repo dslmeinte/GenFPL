@@ -1,7 +1,7 @@
 {
-  "name": "genfpl-test",
+  "name": "genfpl-test-gen",
   "version": "0.0.0-dev",
-  "description": "tests for GenFPL",
+  "description": "tests for GenFPL involving generated sources (also in this package)",
   "author": "Meinte Boersma (DSL Consultancy)",
   "license": "Apache-2.0",
   "type": "module",
@@ -15,14 +15,10 @@
   "scripts": {
     "clean": "rm -rf dist/ && rm -rf node_modules/",
     "build": "tsc",
-    "pretest": "npm run build",
     "test": "mocha dist/",
     "lint": "eslint src"
   },
   "dependencies": {
-    "@lionweb/core": "0.6.8",
-    "@lionweb/utilities": "0.6.8",
-    "@lionweb/validation": "0.6.3",
     "chai": "5.1.1",
     "genfpl": "0.0.0-dev",
     "mocha": "10.7.3"
@@ -30,7 +26,6 @@
   "devDependencies": {
     "@types/chai": "4.3.19",
     "@types/mocha": "10.0.7",
-    "@types/node": "22.5.2",
     "typescript": "5.3.3"
   }
 }
