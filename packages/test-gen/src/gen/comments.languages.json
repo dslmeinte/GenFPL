@@ -12,7 +12,7 @@
   ],
   "nodes": [
     {
-      "id": "comments-lang",
+      "id": "with-comments",
       "classifier": {
         "language": "LionCore-M3",
         "version": "2023.1",
@@ -33,7 +33,7 @@
             "version": "2023.1",
             "key": "IKeyed-key"
           },
-          "value": "comments-lang"
+          "value": "with-comments"
         },
         {
           "property": {
@@ -41,7 +41,7 @@
             "version": "2023.1",
             "key": "LionCore-builtins-INamed-name"
           },
-          "value": "comments-lang"
+          "value": "with-comments"
         }
       ],
       "containments": [
@@ -52,7 +52,8 @@
             "key": "Language-entities"
           },
           "children": [
-            "0"
+            "with-comments-comments",
+            "with-comments-comments"
           ]
         }
       ],
@@ -70,7 +71,7 @@
       "parent": null
     },
     {
-      "id": "0",
+      "id": "with-comments-comments",
       "classifier": {
         "language": "LionCore-M3",
         "version": "2023.1",
@@ -83,7 +84,7 @@
             "version": "2023.1",
             "key": "IKeyed-key"
           },
-          "value": "comments-comment"
+          "value": "with-comments-comments"
         },
         {
           "property": {
@@ -91,7 +92,7 @@
             "version": "2023.1",
             "key": "LionCore-builtins-INamed-name"
           },
-          "value": "comments-comment"
+          "value": "comments"
         }
       ],
       "containments": [
@@ -102,7 +103,7 @@
             "key": "Classifier-features"
           },
           "children": [
-            "comments-comment-comment"
+            "with-comments-comments-comment"
           ]
         }
       ],
@@ -138,10 +139,10 @@
         }
       ],
       "annotations": [],
-      "parent": "comments-lang"
+      "parent": "with-comments"
     },
     {
-      "id": "comments-comment-comment",
+      "id": "with-comments-comments-comment",
       "classifier": {
         "language": "LionCore-M3",
         "version": "2023.1",
@@ -162,7 +163,7 @@
             "version": "2023.1",
             "key": "IKeyed-key"
           },
-          "value": "comments-comment-comment"
+          "value": "with-comments-comments-comment"
         },
         {
           "property": {
@@ -190,7 +191,7 @@
         }
       ],
       "annotations": [],
-      "parent": "0"
+      "parent": "with-comments-comments"
     }
   ]
 }

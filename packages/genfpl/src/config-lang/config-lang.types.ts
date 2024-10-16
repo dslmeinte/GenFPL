@@ -1,12 +1,19 @@
+import {Classifier} from "@lionweb/core"
+
 type GenFPLConfiguration = {
-    comments: boolean
+    subLanguageIdentification: {
+        name: string
+        version: string
+        key: string
+        id: string
+    }
+    valueClassifier?: Classifier
+    typeClassifier?: Classifier
+    booleanArea?: boolean
+    comments?: boolean
 }
 
 export type {
     GenFPLConfiguration
 }
-
-
-// For dev convenience, these are non-generated types for now, until we have patched in a better LionWeb TS generator.
-// TODO  make this LionWeb-compatible
 

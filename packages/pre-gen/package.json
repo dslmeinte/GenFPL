@@ -17,17 +17,13 @@
     "clean": "rm -rf dist/",
     "build": "tsc",
     "lint": "eslint src",
-    "generate": "node dist/generate.js && cp src/definition.ts ../genfpl/src/config-lang/",
     "pregenerate": "npm run build",
-    "prerelease": "npm run generate",
-    "prerelease-beta": "npm run generate",
-    "release": "npm publish",
-    "release-beta": "npm publish --tag beta"
+    "generate": "node dist/generate.js && cp src/definition.ts ../genfpl/src/config-lang/"
   },
   "devDependencies": {
-    "@lionweb/core": "0.6.8",
-    "@lionweb/utilities": "0.6.8",
-    "@types/node": "22.5.2",
+    "@lionweb/core": "0.6.9",
+    "@lionweb/utilities": "0.6.9",
+    "@types/node": "22.7.5",
     "typescript": "5.3.3"
   }
 }

@@ -20,17 +20,17 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "@lionweb/core": "0.6.8",
-    "@lionweb/utilities": "0.6.8",
+    "@lionweb/core": "0.6.9",
+    "@lionweb/utilities": "0.6.9",
     "@lionweb/validation": "0.6.3",
     "chai": "5.1.1",
     "genfpl": "0.0.0-dev",
     "mocha": "10.7.3"
   },
   "devDependencies": {
-    "@types/chai": "4.3.19",
-    "@types/mocha": "10.0.7",
-    "@types/node": "22.5.2",
+    "@types/chai": "4.3.20",
+    "@types/mocha": "10.0.9",
+    "@types/node": "22.7.5",
     "typescript": "5.3.3"
   }
 }

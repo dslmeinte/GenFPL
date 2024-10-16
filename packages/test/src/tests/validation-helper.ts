@@ -1,8 +1,9 @@
-import {deepEqual} from "../assertions.js"
+import {deepEqual} from "./assertions.js"
 
 import {lioncore, lioncoreBuiltins, SerializationChunk, serializeLanguages} from "@lionweb/core"
 import {LanguageRegistry, LionWebValidator} from "@lionweb/validation"
 import {LionWebLanguageWrapper} from "@lionweb/validation/dist/languages/LionWebLanguageWrapper.js"
+
 
 const registry = new LanguageRegistry()
 registry.addLanguage(new LionWebLanguageWrapper(serializeLanguages(lioncore)))

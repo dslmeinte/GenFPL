@@ -119,8 +119,7 @@
           },
           "children": [
             "GenFPLConfiguration-comments",
-            "genfpl-config-valueClassifierReference",
-            "genfpl-config-ownValueInterface"
+            "GenFPLConfiguration-valueClassifier"
           ]
         }
       ],
@@ -198,7 +197,7 @@
       "parent": "genfpl-config"
     },
     {
-      "id": "genfpl-config-valueClassifierReference",
+      "id": "GenFPLConfiguration-valueClassifier",
       "classifier": {
         "language": "LionCore-M3",
         "version": "2023.1",
@@ -227,7 +226,7 @@
             "version": "2023.1",
             "key": "IKeyed-key"
           },
-          "value": "genfpl-config-valueClassifierReference"
+          "value": "GenFPLConfiguration-valueClassifier"
         },
         {
           "property": {
@@ -235,7 +234,7 @@
             "version": "2023.1",
             "key": "LionCore-builtins-INamed-name"
           },
-          "value": "valueClassifierReference"
+          "value": "valueClassifier"
         }
       ],
       "containments": [],
@@ -250,58 +249,6 @@
             {
               "resolveInfo": "Classifier",
               "reference": "-id-Classifier"
-            }
-          ]
-        }
-      ],
-      "annotations": [],
-      "parent": "genfpl-config"
-    },
-    {
-      "id": "genfpl-config-ownValueInterface",
-      "classifier": {
-        "language": "LionCore-M3",
-        "version": "2023.1",
-        "key": "Property"
-      },
-      "properties": [
-        {
-          "property": {
-            "language": "LionCore-M3",
-            "version": "2023.1",
-            "key": "Feature-optional"
-          },
-          "value": "true"
-        },
-        {
-          "property": {
-            "language": "LionCore-M3",
-            "version": "2023.1",
-            "key": "IKeyed-key"
-          },
-          "value": "genfpl-config-ownValueInterface"
-        },
-        {
-          "property": {
-            "language": "LionCore-builtins",
-            "version": "2023.1",
-            "key": "LionCore-builtins-INamed-name"
-          },
-          "value": "ownValueInterface"
-        }
-      ],
-      "containments": [],
-      "references": [
-        {
-          "reference": {
-            "language": "LionCore-M3",
-            "version": "2023.1",
-            "key": "Property-type"
-          },
-          "targets": [
-            {
-              "resolveInfo": "String",
-              "reference": "LionCore-builtins-String"
             }
           ]
         }

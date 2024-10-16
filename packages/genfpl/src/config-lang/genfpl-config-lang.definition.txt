@@ -5,6 +5,6 @@ language GenFPL Configuration Language
         concept GenFPLConfiguration
             features (↓name):
                 comments: Boolean
-                ownValueInterface: String?
-                valueClassifierReference -> Classifier?
+                valueClassifier -> Classifier?
+
 

@@ -1,23 +1,20 @@
 import {Language} from "@lionweb/core"
-import {generateMetamodel} from "./metamodel.js"
+
 import {GenFPLConfiguration} from "../config-lang/config-lang.types.js"
-import {generateInterpreter} from "./interpreter.js"
-import {generateTypeDeriver} from "./type-system.js";
+import {generateMetamodel} from "./metamodel.js"
+import {generateInterpreterScaffold} from "./interpreter.js"
 
 
 export type GenerationResult = {
-    metamodel: Language[]
-    interpreter: string
-    typeDeriver: string
+    metamodel: Language
+    interpreterScaffold: string
 }
 
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const generateFPL = (configuration: GenFPLConfiguration, hostLanguages: Language[]): GenerationResult => {
+export const generateFPL = (configuration: GenFPLConfiguration): GenerationResult => {
     return {
         metamodel: generateMetamodel(configuration),
-        interpreter: generateInterpreter(configuration),
-        typeDeriver: generateTypeDeriver(configuration)
+        interpreterScaffold: generateInterpreterScaffold(configuration)
     }
 }
 

@@ -28,8 +28,8 @@
   },
   "private": false,
   "workspaces": [
-    "./packages/pre-gen",
     "./packages/genfpl",
+    "./packages/pre-gen",
     "./packages/test",
     "./packages/test-gen"
   ]

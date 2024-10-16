@@ -1,20 +1,105 @@
 import {GenFPLConfiguration} from "../config-lang/config-lang.types.js"
-import {Annotation, builtinClassifiers, builtinPrimitives, Language, Property} from "@lionweb/core"
+import {
+    Annotation,
+    builtinClassifiers,
+    builtinPrimitives,
+    Classifier,
+    Concept,
+    Containment,
+    Datatype,
+    Enumeration,
+    EnumerationLiteral,
+    Interface,
+    Language,
+    Property
+} from "@lionweb/core"
 
 
-export const generateMetamodel = (configuration: GenFPLConfiguration): Language[] => {
-    return [
-        ...(configuration.comments ? [generateCommentsLanguage(configuration)] : [])
-    ]
+/**
+ * Makes the given concept-to-extend extend or implement the given classifier-to-inherit,
+ * which should be either a {@link Concept} or an {@link Interface}.
+ */
+const inherit = (conceptToExtend: Concept, classifierToInherit?: Classifier) => {
+    if (classifierToInherit) {
+        if (classifierToInherit instanceof Concept) {
+            conceptToExtend.extends = classifierToInherit
+        } else if (classifierToInherit instanceof Interface) {
+            conceptToExtend.implementing(classifierToInherit)
+        }
+    }
 }
 
-const generateCommentsLanguage = (_: GenFPLConfiguration): Language => {
-    const language = new Language("comments-lang", "0", "comments-lang", "comments-lang")
-    const comment = new Annotation(language, "comments-comment", "comments-comment", "0")
-    comment.annotates = builtinClassifiers.node
-    language.havingEntities(comment)
-    const comment_comment = new Property(comment, "comment", "comments-comment-comment", "comments-comment-comment").ofType(builtinPrimitives.stringDatatype)
-    comment.havingFeatures(comment_comment)
-    return language
+
+export const generateMetamodel = ({subLanguageIdentification, typeClassifier, valueClassifier, booleanArea, comments}: GenFPLConfiguration): Language => {
+
+    const {name, version, key, id} = subLanguageIdentification
+    const subLanguage = new Language(name, version, key, id)
+
+    const addAnnotation = (annotationName: string): Annotation => {
+        const annotation = new Annotation(subLanguage, annotationName, `${key}-${annotationName}`, `${id}-${annotationName}`)
+        subLanguage.havingEntities(annotation)
+        return annotation
+    }
+
+    const addConcept = (conceptName: string): Concept => {
+        const concept = new Concept(subLanguage, conceptName, `${key}-${conceptName}`, `${id}-${conceptName}`, false)
+        subLanguage.havingEntities(concept)
+        return concept
+    }
+
+    const addEnumeration = (enumerationName: string, literalNames: string[]): Enumeration => {
+        const enumeration = new Enumeration(subLanguage, enumerationName, `${key}-${enumerationName}`, `${id}-${enumerationName}`)
+        subLanguage.havingEntities(enumeration)
+        literalNames.forEach((literalName) => {
+            const enumerationLiteral = new EnumerationLiteral(enumeration, literalName, `${enumeration.key}-${literalName}`, `${enumeration.id}-${literalName}`)
+            enumeration.havingLiterals(enumerationLiteral)
+        })
+        return enumeration
+    }
+
+    const addProperty = (classifier: Classifier, propertyName: string, type: Datatype) => {
+        const property = new Property(classifier, propertyName, `${classifier.key}-${propertyName}`, `${classifier.id}-${propertyName}`).ofType(type)
+        classifier.havingFeatures(property)
+    }
+
+    const addContainment = (classifier: Classifier, containmentName: string, type: Classifier) => {
+        const containment = new Containment(classifier, containmentName, `${classifier.key}-${containmentName}`, `${classifier.id}-${containmentName}`).ofType(type)
+        classifier.havingFeatures(containment)
+    }
+
+    if (booleanArea) {
+        const type = addConcept("BooleanType")
+        inherit(type, typeClassifier)
+
+        const value = addConcept("BooleanValue")
+        inherit(value, valueClassifier)
+
+        const literal = addConcept("BooleanLiteral")
+        addProperty(literal, "value", builtinPrimitives.booleanDatatype)
+        inherit(literal, value)
+
+        const binaryOperation = addConcept("BooleanBinaryOperation")
+        inherit(binaryOperation, value)
+        addProperty(binaryOperation, "operator", addEnumeration("BooleanBinaryOperators", ["and", "or"]))
+        if (valueClassifier) {
+            addContainment(binaryOperation, "left", valueClassifier)
+            addContainment(binaryOperation, "right", valueClassifier)
+        }
+
+        const negation = addConcept("BooleanNegation")
+        inherit(negation, value)
+        if (valueClassifier) {
+            addContainment(negation, "operand", valueClassifier)
+        }
+    }
+
+    if (comments) {
+        const comment = addAnnotation("comments")
+        comment.annotates = builtinClassifiers.node
+        subLanguage.havingEntities(comment)
+        addProperty(comment, "comment", builtinPrimitives.stringDatatype)
+    }
+
+    return subLanguage
 }
 

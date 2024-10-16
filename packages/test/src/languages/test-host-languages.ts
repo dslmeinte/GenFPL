@@ -8,5 +8,5 @@ const valueConcept = new Concept(language, "Value", "Value", "Value", true)
 language.havingEntities(valueConcept)
 
 
-export const testHostLanguages = [language]
+export const testHostLanguage = language
 
