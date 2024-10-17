@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "chai": "5.1.1",
-    "genfpl": "0.0.0-dev",
+    "genfpl": "0.1.1",
     "mocha": "10.7.3"
   },
   "devDependencies": {
