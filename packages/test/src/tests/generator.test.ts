@@ -27,7 +27,7 @@ describe("generator", () => {
         const mmSerializationChunk = serializeLanguages(result.metamodel)
         writeJsonAsFile(join(testGenSrcPath, "comments.languages.json"), mmSerializationChunk)
         validateM2(mmSerializationChunk)
-        writeFileSync(join(testGenSrcPath, "comments.interpreter.ts"), result.interpreterScaffold)
+        writeFileSync(join(testGenSrcPath, "comments.interpreter.ts"), result.defaultInterpreter)
     })
 
 })

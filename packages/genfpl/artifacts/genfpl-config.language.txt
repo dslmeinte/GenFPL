@@ -1,0 +1,31 @@
+language GenFPL Configuration Language
+    version: 0
+    entities (↓name):
+
+        concept GenFPLConfiguration
+            features (↓name):
+                booleanArea: Boolean?
+                comments: Boolean?
+                recordArea: RecordArea?
+                subLanguageIdentification: SubLanguageIdentification
+                typeClassifier -> Classifier?
+                valueClassifier -> Classifier?
+
+        concept RecordArea
+            features (↓name):
+                definition: RecordDefinitionReferences
+                recordLiteralConceptName: String
+                recordLiteralConceptName: String
+
+        concept RecordDefinitionReferences
+            features (↓name):
+                attributeConcept -> Concept
+                recordConcept -> Concept
+
+        concept SubLanguageIdentification implements INamed
+            features (↓name):
+                id: String
+                key: String
+                version: String
+
+

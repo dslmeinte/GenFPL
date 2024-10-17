@@ -28,6 +28,8 @@
   },
   "private": false,
   "workspaces": [
+    "./packages/demo",
+    "./packages/demo-gen",
     "./packages/genfpl",
     "./packages/pre-gen",
     "./packages/test",

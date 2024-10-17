@@ -11,7 +11,7 @@ import {
     EnumerationLiteral,
     Interface,
     Language,
-    Property
+    Property, Reference
 } from "@lionweb/core"
 
 
@@ -30,7 +30,7 @@ const inherit = (conceptToExtend: Concept, classifierToInherit?: Classifier) => 
 }
 
 
-export const generateMetamodel = ({subLanguageIdentification, typeClassifier, valueClassifier, booleanArea, comments}: GenFPLConfiguration): Language => {
+export const generateMetamodel = ({subLanguageIdentification, typeClassifier, valueClassifier, booleanArea, recordArea, comments}: GenFPLConfiguration): Language => {
 
     const {name, version, key, id} = subLanguageIdentification
     const subLanguage = new Language(name, version, key, id)
@@ -60,11 +60,19 @@ export const generateMetamodel = ({subLanguageIdentification, typeClassifier, va
     const addProperty = (classifier: Classifier, propertyName: string, type: Datatype) => {
         const property = new Property(classifier, propertyName, `${classifier.key}-${propertyName}`, `${classifier.id}-${propertyName}`).ofType(type)
         classifier.havingFeatures(property)
+        return property
     }
 
     const addContainment = (classifier: Classifier, containmentName: string, type: Classifier) => {
         const containment = new Containment(classifier, containmentName, `${classifier.key}-${containmentName}`, `${classifier.id}-${containmentName}`).ofType(type)
         classifier.havingFeatures(containment)
+        return containment
+    }
+
+    const addReference = (classifier: Classifier, referenceName: string, type: Classifier) => {
+        const reference = new Reference(classifier, referenceName, `${classifier.key}-${referenceName}`, `${classifier.id}-${referenceName}`).ofType(type)
+        classifier.havingFeatures(reference)
+        return reference
     }
 
     if (booleanArea) {
@@ -90,6 +98,22 @@ export const generateMetamodel = ({subLanguageIdentification, typeClassifier, va
         inherit(negation, value)
         if (valueClassifier) {
             addContainment(negation, "operand", valueClassifier)
+        }
+    }
+
+    if (recordArea) {
+        const dotExpression = addConcept("DotExpression")
+        inherit(dotExpression, valueClassifier)
+        if (valueClassifier) {
+            addContainment(dotExpression, "instance", valueClassifier)
+            addReference(dotExpression, "attribute", recordArea.definition.attributeConcept)
+
+            const attributeValue = addConcept(recordArea.attributeValueName)
+            addContainment(attributeValue, "value", valueClassifier)
+
+            const recordInstance = addConcept(recordArea.recordLiteralName)
+            inherit(recordInstance, valueClassifier)
+            addContainment(recordInstance, "attributeValues", attributeValue).isMultiple()
         }
     }
 

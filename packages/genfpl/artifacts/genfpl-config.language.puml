@@ -1,0 +1,38 @@
+@startuml
+hide empty members
+
+' qualified name: "GenFPL Configuration Language"
+
+
+class GenFPLConfiguration {
+  booleanArea: Boolean?
+  comments: Boolean?
+}
+
+class RecordArea {
+  recordLiteralConceptName: String
+  recordLiteralConceptName: String
+}
+
+class RecordDefinitionReferences
+
+class SubLanguageIdentification implements INamed {
+  version: String
+  key: String
+  id: String
+}
+
+
+
+' relations:
+
+GenFPLConfiguration "1" o--> "1" SubLanguageIdentification: subLanguageIdentification
+GenFPLConfiguration "*" --> "0..1" Classifier: valueClassifier
+GenFPLConfiguration "*" --> "0..1" Classifier: typeClassifier
+GenFPLConfiguration "1" o--> "0..1" RecordArea: recordArea
+RecordArea "1" o--> "1" RecordDefinitionReferences: definition
+RecordDefinitionReferences "*" --> "1" Concept: recordConcept
+RecordDefinitionReferences "*" --> "1" Concept: attributeConcept
+
+
+@enduml

@@ -6,7 +6,7 @@ import {cond, indent} from "./textgen-utils.js"
 
 // TODO  part of the generated code could be refactored into a generic AbstractInterpreter class
 
-export const generateInterpreterScaffold = ({subLanguageIdentification, booleanArea}: GenFPLConfiguration): string => {
+export const generateDefaultInterpreter = ({subLanguageIdentification, recordArea, booleanArea}: GenFPLConfiguration): string => {
     const {name, key} = subLanguageIdentification
     return asString([
 `import {
@@ -21,7 +21,7 @@ export const generateInterpreterScaffold = ({subLanguageIdentification, booleanA
 } from "@lionweb/core";
 
 
-export abstract class ${name}InterpreterScaffold<NT extends Node> {
+export abstract class ${name}DefaultInterpreter<NT extends Node> {
 
     constructor(private readonly extractionFacade: ExtractionFacade<NT>) {}
 
@@ -64,6 +64,25 @@ export abstract class ${name}InterpreterScaffold<NT extends Node> {
         }
     }
 `
+        ),
+        cond(
+            !!recordArea,
+            [
+`
+    protected interpretDotExpression(expression: NT) {
+        const classifier = this.extractionFacade.classifierOf(expression);
+        const left = this.valueOfFeature(expression, classifier, "${key}-DotExpression-left") as NT;
+        if (this.extractionFacade.classifierOf(left).key !== "${key}-${recordArea!.recordLiteralName}") {
+            throw new Error(\`left-hand side of . expression is not a ${recordArea!.recordLiteralName}\`);
+        }
+        const right = this.valueOfFeature(expression, classifier, "${key}-DotExpression-right") as NT;
+        if (this.extractionFacade.classifierOf(right).key !== "${recordArea!.definition!.attributeConcept.key}") {
+            throw new Error(\`right-hand side of . expression is not (a reference to) an ${recordArea!.definition!.attributeConcept.name}\`);
+        }
+        throw new Error(\`fail - gave up here...\`);
+    }
+`
+            ]
         ),
         ``,
         indent([
